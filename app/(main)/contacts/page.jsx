@@ -105,7 +105,7 @@ const ContactsPage = () => {
           ) : (
             <div className="flex flex-col gap-4">
               {groups.map((group) => (
-                <Link key={group.id} href={`/groups/${group.id}`}>
+                <Link key={group.id} href={`/group/${group.id}`}>
                   <Card
                     className={
                       "hover:bg-muted/30 transition-colors curson-pointer"
@@ -141,7 +141,7 @@ const ContactsPage = () => {
         isOpen={isCreateGroupModalOpen}
         onClose={() => setIsCreateGroupModalOpen(false)}
         onSuccess={(groupId) => {
-          router.push(`/groups/${groupId}`);
+          router.push(`/group/${groupId}`);
         }}
       />
     </div>
