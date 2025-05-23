@@ -39,7 +39,7 @@ const GroupList = ({ groups }) => {
             {hasBalance && (
               <span
                 className={`text-sm font-medium ${
-                  balance > 0 ? "text-green-600" : "text-red-600"
+                  balance > 0 ? "text-teal-500" : "text-red-600"
                 }`}
               >
                 {balance > 0 ? "+" : balance < 0 ? "-" : " "}₹

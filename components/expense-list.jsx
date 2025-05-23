@@ -118,7 +118,7 @@ export function ExpenseList({
                     ) : (
                       <div className="text-sm text-muted-foreground">
                         {isCurrentUserPayer ? (
-                          <span className="text-green-600">You paid</span>
+                          <span className="text-teal-500">You paid</span>
                         ) : (
                           <span className="text-red-600">
                             {payer.name} paid

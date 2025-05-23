@@ -48,7 +48,7 @@ export function GroupBalances({ balances }) {
         <p
           className={`text-2xl font-bold ${
             me.totalBalance > 0
-              ? "text-green-600"
+              ? "text-teal-500"
               : me.totalBalance < 0
                 ? "text-red-600"
                 : ""
@@ -79,7 +79,7 @@ export function GroupBalances({ balances }) {
           {owedByMembers.length > 0 && (
             <div>
               <h3 className="text-sm font-medium flex items-center mb-3">
-                <ArrowUpCircle className="h-4 w-4 text-green-500 mr-2" />
+                <ArrowUpCircle className="h-4 w-4 text-teal-500 mr-2" />
                 Owed to you
               </h3>
               <div className="space-y-3">
@@ -97,7 +97,7 @@ export function GroupBalances({ balances }) {
                       </Avatar>
                       <span className="text-sm">{member.name}</span>
                     </div>
-                    <span className="font-medium text-green-600">
+                    <span className="font-medium text-teal-500">
                       ₹{member.amount.toFixed(2)}
                     </span>
                   </div>

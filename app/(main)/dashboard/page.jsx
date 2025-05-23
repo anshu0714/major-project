@@ -70,7 +70,7 @@ export default function Dashboard() {
           <CardContent>
             <div className="text-2xl font-bold">
               {balances?.totalBalance > 0 ? (
-                <span className="text-green-600">
+                <span className="text-teal-500">
                   +₹{balances?.totalBalance.toFixed(2)}
                 </span>
               ) : balances?.totalBalance < 0 ? (
@@ -98,7 +98,7 @@ export default function Dashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-teal-500">
               ₹{balances?.youAreOwed.toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">

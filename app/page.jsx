@@ -12,7 +12,7 @@ export default function Home() {
     <div className="flex flex-col pt-16">
       <section className="mt-20 pb-12 space-y-10 md:space-y-20 px-5">
         <div className="container mx-auto px-6 md:px-6 text-center">
-          <Badge variant={"outline"} className={"text-green-700 bg-green-100"}>
+          <Badge variant={"outline"} className={"text-teal-600 bg-teal-100"}>
             Smart Splits, Simple Settles
           </Badge>
           <h1 className="gradient-title mx-auto max-w-4xl text-4xl font-bold md:text-7xl my-6">
@@ -27,7 +27,7 @@ export default function Home() {
             <Button
               asChild
               size={"lg"}
-              className={"bg-green-600 hover:bg-green-700"}
+              className={"bg-teal-500 hover:bg-teal-600"}
             >
               <Link href="/dashboard">
                 Get Started
@@ -38,7 +38,7 @@ export default function Home() {
               variant={"outline"}
               asChild
               size={"lg"}
-              className={"border-green-600 text-green-600 hover:bg-green-50"}
+              className={"border-teal-500 text-teal-500 hover:bg-teal-100"}
             >
               <Link href="#how-it-works">See How It Works</Link>
             </Button>
@@ -59,7 +59,7 @@ export default function Home() {
       </section>
       <section id="features" className="bg-gray-50 py-20">
         <div className="container mx-auto px-6 md:px-6 text-center">
-          <Badge variant={"outline"} className={"text-green-700 bg-green-100"}>
+          <Badge variant={"outline"} className={"text-teal-600 bg-teal-100"}>
             Features
           </Badge>
           <h1 className="gradient-title mt-4 text-3xl md:text-4xl">
@@ -90,7 +90,7 @@ export default function Home() {
       </section>
       <section id="how-it-works" className="py-20">
         <div className="container mx-auto px-6 md:px-6 text-center">
-          <Badge variant={"outline"} className={"text-green-700 bg-green-100"}>
+          <Badge variant={"outline"} className={"text-teal-700 bg-teal-100"}>
             How It Works
           </Badge>
           <h1 className="gradient-title mt-4 text-3xl md:text-4xl">
@@ -111,7 +111,7 @@ export default function Home() {
               >
                 <div
                   className={
-                    "flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600"
+                    "flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-xl font-bold text-teal-500"
                   }
                 >
                   {label}
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
       <section className=" bg-gray-50 py-20">
         <div className="container mx-auto px-6 md:px-6 text-center">
-          <Badge variant={"outline"} className={"text-green-700 bg-green-100"}>
+          <Badge variant={"outline"} className={"text-teal-700 bg-teal-100"}>
             Testimonals
           </Badge>
           <h1 className="gradient-title mt-4 text-3xl md:text-4xl">
@@ -157,14 +157,14 @@ export default function Home() {
           <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl text-white">
             Ready to Simplify Your Splitting?
           </h2>
-          <p className="mx-auto max-w-[600px] text-green-100 md:text-xl/relaxed">
+          <p className="mx-auto max-w-[600px] text-teal-100 md:text-xl/relaxed">
             Joined thousands of users who are already enjoying the benefits of
             Splitzy. Sign up today and experience the difference!
           </p>
           <Button
               asChild
               size={"lg"}
-              className={"bg-green-600 hover:bg-green-700"}
+              className={"bg-teal-700 hover:bg-teal-800"}
             >
               <Link href="/dashboard">
                 Get Started

@@ -18,7 +18,7 @@ const BalanceSummary = ({ balances }) => {
       {hasOwed && (
         <div>
           <h3 className="text-sm font-medium flex items-center mb-3">
-            <ArrowUpCircle className="h-4 w-4 text-green-500 mr-2" />
+            <ArrowUpCircle className="h-4 w-4 text-teal-500 mr-2" />
             Owed to You
           </h3>
           <div className="space-y-3">

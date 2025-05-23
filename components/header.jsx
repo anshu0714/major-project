@@ -37,13 +37,13 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="#features"
-              className="text-sm font-medium hover:text-green-600 transition"
+              className="text-sm font-medium hover:text-teal-500 transition"
             >
               Features
             </Link>
             <Link
               href="#how-it-works"
-              className="text-sm font-medium hover:text-green-600 transition"
+              className="text-sm font-medium hover:text-teal-500 transition"
             >
               How It Works
             </Link>
@@ -55,7 +55,7 @@ const Header = () => {
               <Button
                 variant={"outline"}
                 className={
-                  "hidden md:inline-flex items-center gap-2 hover:text-green-600 hover:border-green-600 transition"
+                  "hidden md:inline-flex items-center gap-2 hover:text-teal-600 hover:border-teal-600 transition"
                 }
               >
                 <LayoutDashboard className="h-4 w-4" />
@@ -73,7 +73,7 @@ const Header = () => {
               <Button variant={"ghost"}>Sign In</Button>
             </SignInButton>
             <SignUpButton>
-              <Button className={"bg-green-600 hover:bg-green-700 border-none"}>
+              <Button className={"bg-orange-500 hover:bg-orange-600 border-none"}>
                 Get Started
               </Button>
             </SignUpButton>

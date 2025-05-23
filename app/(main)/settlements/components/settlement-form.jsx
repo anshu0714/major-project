@@ -140,7 +140,7 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
               <p>
                 <span className="font-medium">{otherUser.name}</span> owes you
               </p>
-              <span className="text-xl font-bold text-green-600">
+              <span className="text-xl font-bold text-teal-500">
                 ₹{netBalance.toFixed(2)}
               </span>
             </div>
@@ -271,7 +271,7 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
                     <div
                       className={`font-medium ${
                         isOwing
-                          ? "text-green-600"
+                          ? "text-teal-500"
                           : isOwed
                             ? "text-red-600"
                             : ""
