@@ -6,8 +6,8 @@ import { useConvexQuery } from "@/hooks/use-convex-query";
 import { BarLoader } from "react-spinners";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Users } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ArrowLeft, Users, Wallet } from "lucide-react";
 import SettlementForm from "../../components/settlement-form";
 
 export default function SettlementPage() {
@@ -40,29 +40,36 @@ export default function SettlementPage() {
   };
 
   return (
-    <div className="container mx-auto py-6 max-w-lg">
+    <div className="container mx-auto py-8 max-w-lg">
       <Button
         variant="outline"
         size="sm"
-        className="mb-4"
+        className="mb-6"
         onClick={() => router.back()}
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
         Back
       </Button>
 
-      <div className="mb-6">
-        <h1 className="text-5xl gradient-title">Record a settlement</h1>
-        <p className="text-muted-foreground mt-1">
-          {type === "user"
-            ? `Settling up with ${data?.counterpart?.name}`
-            : `Settling up in ${data?.group?.name}`}
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8">
+        <div className="flex items-center justify-center rounded-md bg-teal-100 p-3 h-16 w-16">
+          <Wallet className="h-6 w-6 text-teal-600" />
+        </div>
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
+            Record Settlement
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            {type === "user"
+              ? `Settling up with ${data?.counterpart?.name}`
+              : `Settling up in ${data?.group?.name}`}
+          </p>
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-3">
+      <Card className="bg-white rounded-xl shadow-sm">
+        <CardHeader className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 pb-4">
+          <div className="flex items-center justify-center rounded-md bg-muted/20 p-2">
             {type === "user" ? (
               <Avatar className="h-10 w-10">
                 <AvatarImage src={data?.counterpart?.imageUrl} />
@@ -71,14 +78,14 @@ export default function SettlementPage() {
                 </AvatarFallback>
               </Avatar>
             ) : (
-              <div className="bg-primary/10 p-2 rounded-md">
+              <div className="p-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
             )}
-            <CardTitle>
-              {type === "user" ? data?.counterpart?.name : data?.group?.name}
-            </CardTitle>
           </div>
+          <CardTitle className="text-lg font-semibold">
+            {type === "user" ? data?.counterpart?.name : data?.group?.name}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <SettlementForm

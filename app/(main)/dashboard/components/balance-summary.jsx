@@ -5,69 +5,74 @@ import React from "react";
 
 const BalanceSummary = ({ balances }) => {
   if (!balances) return null;
-  const { oweDetails } = balances;
-  const hasOwed = oweDetails.youAreOwedBy.length > 0;
-  const hasOwing = oweDetails.youOwe.length > 0;
+
+  const { youAreOwedBy, youOwe } = balances.oweDetails;
+
+  const renderOwedSection = () => (
+    <section className="mb-6">
+      <header className="flex items-center mb-2">
+        <ArrowUpCircle className="h-4 w-4 text-teal-500 mr-2" />
+        <h3 className="text-sm font-medium">Owed to You</h3>
+      </header>
+      <ul className="space-y-2">
+        {youAreOwedBy.map((person) => (
+          <li key={person.userId}>
+            <Link
+              href={`/person/${person.userId}`}
+              className="flex items-center justify-between p-2 rounded-md hover:bg-muted transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={person.imageUrl} />
+                  <AvatarFallback>{person.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm">{person.name}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+
+  const renderOwingSection = () => (
+    <section className="mb-6">
+      <header className="flex items-center mb-2">
+        <ArrowDownCircle className="h-4 w-4 text-red-500 mr-2" />
+        <h3 className="text-sm font-medium">You Owe</h3>
+      </header>
+      <ul className="space-y-2">
+        {youOwe.map((person) => (
+          <li key={person.userId}>
+            <Link
+              href={`/person/${person.userId}`}
+              className="flex items-center justify-between p-2 rounded-md hover:bg-muted transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={person.imageUrl} />
+                  <AvatarFallback>{person.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm">{person.name}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+
+  const renderSettled = () => (
+    <div className="py-6 text-center">
+      <p className="text-muted-foreground">You're all settled up!</p>
+    </div>
+  );
+
   return (
     <div className="space-y-4">
-      {!hasOwed && !hasOwing && (
-        <div className="text-center py-6">
-          <p className="text-muted-foreground">You're all settled up!</p>
-        </div>
-      )}
-      {hasOwed && (
-        <div>
-          <h3 className="text-sm font-medium flex items-center mb-3">
-            <ArrowUpCircle className="h-4 w-4 text-teal-500 mr-2" />
-            Owed to You
-          </h3>
-          <div className="space-y-3">
-            {oweDetails.youAreOwedBy.map((item) => (
-              <Link
-                key={item.userId}
-                href={`/person/${item.userId}`}
-                className="flex items-center justify-between hover:bg-muted p-2 rounded-md transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={item.imageUrl}></AvatarImage>
-                    <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <span className="text-sm">{item.name}</span>
-                </div>
-                <span></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {hasOwing && (
-        <div>
-          <h3 className="text-sm font-medium flex items-center mb-3">
-            <ArrowDownCircle className="h-4 w-4 text-red-500 mr-2" />
-            You Owe
-          </h3>
-          <div className="space-y-3">
-            {oweDetails.youOwe.map((item) => (
-              <Link
-                key={item.userId}
-                href={`/person/${item.userId}`}
-                className="flex items-center justify-between hover:bg-muted p-2 rounded-md transition-colors"
-              >
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={item.imageUrl}></AvatarImage>
-                    <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <span className="text-sm">{item.name}</span>
-                </div>
-                <span></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      {youAreOwedBy.length > 0 && renderOwedSection()}
+      {youOwe.length > 0 && renderOwingSection()}
+      {youAreOwedBy.length === 0 && youOwe.length === 0 && renderSettled()}
     </div>
   );
 };

@@ -1,17 +1,17 @@
 "use client";
-
 import { useConvexQuery } from "@/hooks/use-convex-query";
 import { api } from "@/convex/_generated/api";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowUpCircle, ArrowDownCircle } from "lucide-react";
+import { ArrowUpCircle, ArrowDownCircle, CheckCircle2 } from "lucide-react";
 
 export function GroupBalances({ balances }) {
   const { data: currentUser } = useConvexQuery(api.users.getCurrentUser);
 
   if (!balances?.length || !currentUser) {
     return (
-      <div className="text-center py-4 text-muted-foreground">
-        No balance information available
+      <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+        <CheckCircle2 className="h-8 w-8 mb-2" />
+        <span>No balance information available</span>
       </div>
     );
   }
@@ -19,8 +19,9 @@ export function GroupBalances({ balances }) {
   const me = balances.find((b) => b.id === currentUser._id);
   if (!me) {
     return (
-      <div className="text-center py-4 text-muted-foreground">
-        You’re not part of this group
+      <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+        <CheckCircle2 className="h-8 w-8 mb-2" />
+        <span>You’re not part of this group</span>
       </div>
     );
   }
@@ -41,47 +42,51 @@ export function GroupBalances({ balances }) {
     owingToMembers.length === 0;
 
   return (
-    <div className="space-y-4">
-      {/* Current user's total balance */}
-      <div className="text-center pb-4 border-b">
-        <p className="text-sm text-muted-foreground mb-1">Your balance</p>
-        <p
-          className={`text-2xl font-bold ${
+    <div className="flex flex-col gap-6">
+      {/* Your Balance Card */}
+      <div className="flex flex-col items-center bg-teal-50 rounded-xl py-6 px-4 shadow-sm">
+        <span className="text-sm text-muted-foreground mb-1">Your balance</span>
+        <span
+          className={`text-3xl font-bold ${
             me.totalBalance > 0
-              ? "text-teal-500"
+              ? "text-teal-600"
               : me.totalBalance < 0
-                ? "text-red-600"
-                : ""
+              ? "text-red-600"
+              : "text-gray-700"
           }`}
         >
           {me.totalBalance > 0
             ? `+₹${me.totalBalance.toFixed(2)}`
             : me.totalBalance < 0
-              ? `-₹${Math.abs(me.totalBalance).toFixed(2)}`
-              : "₹0.00"}
-        </p>
-        <p className="text-sm text-muted-foreground mt-1">
+            ? `-₹${Math.abs(me.totalBalance).toFixed(2)}`
+            : "₹0.00"}
+        </span>
+        <span className="text-sm text-muted-foreground mt-1">
           {me.totalBalance > 0
             ? "You are owed money"
             : me.totalBalance < 0
-              ? "You owe money"
-              : "You are all settled up"}
-        </p>
+            ? "You owe money"
+            : "You are all settled up"}
+        </span>
       </div>
 
+      {/* Settled Up */}
       {isAllSettledUp ? (
-        <div className="text-center py-4">
-          <p className="text-muted-foreground">Everyone is settled up!</p>
+        <div className="flex flex-col items-center py-6">
+          <CheckCircle2 className="h-7 w-7 text-teal-600 mb-2" />
+          <span className="text-muted-foreground font-medium">
+            Everyone is settled up!
+          </span>
         </div>
       ) : (
-        <div className="space-y-4">
-          {/* People who owe the current user */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Owed to you */}
           {owedByMembers.length > 0 && (
-            <div>
-              <h3 className="text-sm font-medium flex items-center mb-3">
-                <ArrowUpCircle className="h-4 w-4 text-teal-500 mr-2" />
-                Owed to you
-              </h3>
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-teal-100">
+              <div className="flex items-center mb-4">
+                <ArrowUpCircle className="h-5 w-5 text-teal-600 mr-2" />
+                <span className="font-semibold text-teal-700">Owed to you</span>
+              </div>
               <div className="space-y-3">
                 {owedByMembers.map((member) => (
                   <div
@@ -95,9 +100,9 @@ export function GroupBalances({ balances }) {
                           {member.name?.charAt(0) ?? "?"}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="text-sm">{member.name}</span>
+                      <span className="font-medium">{member.name}</span>
                     </div>
-                    <span className="font-medium text-teal-500">
+                    <span className="inline-block rounded-full px-3 py-1 text-sm font-semibold bg-teal-50 text-teal-700">
                       ₹{member.amount.toFixed(2)}
                     </span>
                   </div>
@@ -106,13 +111,13 @@ export function GroupBalances({ balances }) {
             </div>
           )}
 
-          {/* People the current user owes */}
+          {/* You owe */}
           {owingToMembers.length > 0 && (
-            <div>
-              <h3 className="text-sm font-medium flex items-center mb-3">
-                <ArrowDownCircle className="h-4 w-4 text-red-500 mr-2" />
-                You owe
-              </h3>
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-red-100">
+              <div className="flex items-center mb-4">
+                <ArrowDownCircle className="h-5 w-5 text-red-600 mr-2" />
+                <span className="font-semibold text-red-700">You owe</span>
+              </div>
               <div className="space-y-3">
                 {owingToMembers.map((member) => (
                   <div
@@ -126,9 +131,9 @@ export function GroupBalances({ balances }) {
                           {member.name?.charAt(0) ?? "?"}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="text-sm">{member.name}</span>
+                      <span className="font-medium">{member.name}</span>
                     </div>
-                    <span className="font-medium text-red-600">
+                    <span className="inline-block rounded-full px-3 py-1 text-sm font-semibold bg-red-50 text-red-700">
                       ₹{member.amount.toFixed(2)}
                     </span>
                   </div>

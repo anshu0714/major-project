@@ -229,7 +229,11 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
           />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          className="w-full bg-teal-600 text-white font-semibold rounded-lg shadow hover:bg-teal-700 transition-colors duration-200 py-3"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Recording..." : "Record settlement"}
         </Button>
       </form>
@@ -247,8 +251,8 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
           <div className="space-y-2">
             {groupMembers.map((member) => {
               const isSelected = selectedGroupMemberId === member.userId;
-              const isOwing = member.netBalance < 0; 
-              const isOwed = member.netBalance > 0; 
+              const isOwing = member.netBalance < 0;
+              const isOwed = member.netBalance > 0;
 
               return (
                 <div
@@ -270,11 +274,7 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
                     </div>
                     <div
                       className={`font-medium ${
-                        isOwing
-                          ? "text-teal-500"
-                          : isOwed
-                            ? "text-red-600"
-                            : ""
+                        isOwing ? "text-teal-500" : isOwed ? "text-red-600" : ""
                       }`}
                     >
                       {isOwing
@@ -401,8 +401,8 @@ export default function SettlementForm({ entityType, entityData, onSuccess }) {
 
         <Button
           type="submit"
-          className="w-full"
-          disabled={isSubmitting || !selectedGroupMemberId}
+          className="w-full bg-teal-600 text-white font-semibold rounded-lg shadow hover:bg-teal-700 transition-colors duration-200 py-3"
+          disabled={isSubmitting}
         >
           {isSubmitting ? "Recording..." : "Record settlement"}
         </Button>

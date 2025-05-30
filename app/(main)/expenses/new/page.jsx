@@ -2,42 +2,55 @@
 
 import { useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 import ExpenseForm from "./components/expense-form";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { WalletCards } from "lucide-react";
 
 export default function NewExpensePage() {
   const router = useRouter();
 
   return (
-    <div className="container max-w-3xl mx-auto py-6">
-      <div className="mb-6">
-        <h1 className="text-5xl gradient-title">Add a new expense</h1>
-        <p className="text-muted-foreground mt-1">
-          Record a new expense to split with others
-        </p>
+    <div className="container max-w-3xl mx-auto py-8">
+      {/* Modern, clean header */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8">
+        <div className="flex items-center justify-center rounded-md bg-teal-100 p-3 h-16 w-16">
+          <WalletCards className="h-6 w-6 text-teal-600" />
+        </div>
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
+            New Expense
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Record a new expense to split with others
+          </p>
+        </div>
       </div>
 
-      <Card>
-        <CardContent>
-          <Tabs className="pb-3" defaultValue="individual">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="individual">Individual Expense</TabsTrigger>
-              <TabsTrigger value="group">Group Expense</TabsTrigger>
+      {/* Card with clean tabs and content */}
+      <Card className="bg-white rounded-xl shadow-sm">
+        <Tabs defaultValue="individual" className="w-full">
+          <CardHeader>
+            <CardTitle className="sr-only">Expense Type</CardTitle>
+            <TabsList className="grid w-full grid-cols-2 bg-gray-100 rounded-lg">
+              <TabsTrigger value="individual">Individual</TabsTrigger>
+              <TabsTrigger value="group">Group</TabsTrigger>
             </TabsList>
-            <TabsContent value="individual" className="mt-0">
+          </CardHeader>
+          <CardContent className="pt-6">
+            <TabsContent value="individual" className="focus-visible:ring-0">
               <ExpenseForm
                 type="individual"
                 onSuccess={(id) => router.push(`/person/${id}`)}
               />
             </TabsContent>
-            <TabsContent value="group" className="mt-0">
+            <TabsContent value="group" className="focus-visible:ring-0">
               <ExpenseForm
                 type="group"
                 onSuccess={(id) => router.push(`/group/${id}`)}
               />
             </TabsContent>
-          </Tabs>
-        </CardContent>
+          </CardContent>
+        </Tabs>
       </Card>
     </div>
   );
