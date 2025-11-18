@@ -7,14 +7,31 @@ This project is a **Next.js** application bootstrapped with [`create-next-app`](
 
 ---
 
-## 🚀 Features
+## 🌐 Live Demo  
+🚀 **Live Preview:** https://splitzy-woad.vercel.app/
 
-- Add, edit, and track group expenses  
-- Automatically split bills between members  
-- Clean UI and fast UX powered by Next.js App Router  
-- Optimized fonts using `next/font` with **Geist**  
-- Fully responsive for mobile and desktop  
-- Easy to scale and deploy  
+---
+
+## ✨ Features
+
+- ➕ Add, edit, and track group expenses  
+- 🤝 Automatically split bills between members  
+- ⚡ Fast and modern UX powered by Next.js App Router  
+- 🔤 Optimized typography using `next/font` with **Geist**  
+- 📱 Fully responsive for mobile & desktop  
+- 🚀 Easy to deploy and scale with Vercel  
+
+---
+
+## 🧰 Tech Stack
+
+- **Next.js**
+- **Convex** 
+- **TailwindCSS**
+- **Clerk** (Authentication)
+- **Inngest** (Workflows & background jobs)
+- **Resend** (Email)
+- **Vercel** (Deployment & hosting)
 
 ---
 
@@ -30,3 +47,4 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
